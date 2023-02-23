@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <style>
+      form {
+        text-align: center;
+      }
+
+      textarea, h3, p {
+        font-size: 20px;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #6B431A;
+      }
+
+      .prediction-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .prediction-text {
+        font-size: 24px;
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+
+      .human-prediction {
+        background-color: #244B5C;
+      }
+
+      .ai-prediction {
+        background-color: #6B1A1A;
+      }
+      
+      .image-container {
+        text-align: center;
+      }
+      
+      .image-container img {
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+    <title>AIEssayExpert</title>
+  </head>
+  <body>
+    <div class="image-container">
+      <img src="https://i.imgur.com/GSR4OMG.jpg">
+    </div>
+    <form action="/predict" method="post">
+      <textarea rows="10" cols="50" name="essay"></textarea>
+      <br><br>
+      <input type="submit" value="Predict">
+    </form>
+    <br>
+    {% if prediction_text is not none %}
+      <div class="prediction-container {% if prediction_text == 'The text was written by a human.' %}human-prediction{% else %}ai-prediction{% endif %}">
+        <h3>Prediction:</h3>
+        <p class="prediction-text">{{ prediction_text }}</p>
+      </div>
+    {% endif %}
+  </body>
+</html>
